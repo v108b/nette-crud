@@ -21,7 +21,7 @@
 								{if $row->$column === null}
 									<i>NULL</i>
 								{elseif array_key_exists($column, $foreignKeys)}
-									<a href="{plink updateTableRow $foreignKeys[$column], $row->$column}">{\V108B\NetteCrud\Extension::toString($model->getRow($foreignKeys[$column], $row->$column))}</a>
+									<a href="{plink updateTableRow $foreignKeys[$column], $row->$column}">{\V108B\NetteCrud\Extension::toString($row->ref($column))}</a>
 								{else}
 									{$row->$column}
 								{/if}
