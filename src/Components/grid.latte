@@ -1,0 +1,40 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		{$tableName}
+	</div>
+	<div class="panel-body">
+		<div class="table-responsive">
+			<table class="table table-bordered table-hover table-striped">
+				<thead>
+				<tr>
+					{foreach $columns as $column}
+						<th>{$column}</th>
+					{/foreach}
+					<th><a class="btn btn-success btn-xs" href="{plink insertTableRow $tableName}">Přidat</a></th>
+				</tr>
+				</thead>
+				<tbody>
+				{foreach $rows as $row}
+					<tr>
+						{foreach $columns as $column}
+							<td>
+								{if $row->$column === null}
+									<i>NULL</i>
+								{elseif array_key_exists($column, $foreignKeys)}
+									<a href="{plink updateTableRow $foreignKeys[$column], $row->$column}">{\V108B\NetteCrud\Extension::toString($model->getRow($foreignKeys[$column], $row->$column))}</a>
+								{else}
+									{$row->$column}
+								{/if}
+							</td>
+						{/foreach}
+						<td>
+							<a class="btn btn-primary btn-xs" href="{plink updateTableRow $tableName, $row->id}">Upravit</a>
+							<a class="btn btn-danger btn-xs" href="{plink deleteTableRow $tableName, $row->id}">Smazat</a>
+						</td>
+					</tr>
+				{/foreach}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
