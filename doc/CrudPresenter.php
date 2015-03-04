@@ -19,7 +19,7 @@ class CrudPresenter extends BasePresenter {
 	{
 		$this->template->tableName = $tableName;
 		$this->template->id = $id;
-		$form = $this->getCrudExtenstion()->getForms()->buildDeleteForm($tableName, $id);
+		$form = $this->getCrudExtenstion()->getForms()->buildDeleteForm($tableName, json_decode($id, true));
 		$this->addComponent($form, 'crudDeleteRowForm');
 
 		$form->onSuccess[] = function() use ($tableName) {
@@ -31,7 +31,7 @@ class CrudPresenter extends BasePresenter {
 	{
 		$this->template->tableName = $tableName;
 		$this->template->id = $id;
-		$form = $this->getCrudExtenstion()->getForms()->buildUpdateForm($tableName, $id);
+		$form = $this->getCrudExtenstion()->getForms()->buildUpdateForm($tableName, json_decode($id, true));
 		$this->addComponent($form, 'crudUpdateRowForm');
 
 		$form->onSuccess[] = function() use ($tableName) {

@@ -1,8 +1,8 @@
 <?php
 namespace V108B\NetteCrud;
 
-use Nette\Database\Context;
-use Nette\Object;
+use \Nette\Database\Context;
+use \Nette\Object;
 
 class Extension extends Object{
 
@@ -45,6 +45,15 @@ class Extension extends Object{
 			return $row->label;
 		} else {
 			return "#" . $row->id;
+		}
+	}
+
+	public static function getIdString($row) {
+		$primary = $row->getPrimary();
+		if (is_array($primary)) {
+			return json_encode($primary);
+		} else {
+			return $primary;
 		}
 	}
 }

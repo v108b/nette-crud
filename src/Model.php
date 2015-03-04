@@ -27,7 +27,12 @@ class Model {
 
 	public function update($tableName, $id, array $values)
 	{
-		$this->getRow($tableName, $id)->update($values);
+		$row = $this->getRow($tableName, $id);
+		$selection = $this->database->table($tableName)->wherePrimary($row->getPrimary());
+		$selection->update($values);
+
+//		ActiveRow tries to reload with old PK
+//		$this->getRow($tableName, $id)->update($values);
 	}
 
 	public function getTable($tableName)

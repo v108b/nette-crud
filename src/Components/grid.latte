@@ -10,7 +10,7 @@
 					{foreach $columns as $column}
 						<th>{$column}</th>
 					{/foreach}
-					<th><a class="btn btn-success btn-xs" href="{plink insertTableRow $tableName}">Přidat</a></th>
+					<th><a class="btn btn-success btn-xs" href="{plink insertTableRow $tableName}">Add</a></th>
 				</tr>
 				</thead>
 				<tbody>
@@ -28,8 +28,8 @@
 							</td>
 						{/foreach}
 						<td>
-							<a class="btn btn-primary btn-xs" href="{plink updateTableRow $tableName, $row->id}">Upravit</a>
-							<a class="btn btn-danger btn-xs" href="{plink deleteTableRow $tableName, $row->id}">Smazat</a>
+							<a class="btn btn-primary btn-xs" href="{plink updateTableRow $tableName, \V108B\NetteCrud\Extension::getIdString($row)}">Edit</a>
+							<a class="btn btn-danger btn-xs" href="{plink deleteTableRow $tableName, \V108B\NetteCrud\Extension::getIdString($row)}">Delete</a>
 						</td>
 					</tr>
 				{/foreach}
