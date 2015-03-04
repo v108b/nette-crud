@@ -1,0 +1,20 @@
+{
+  "name": "v108b/nette-crud",
+  "type": "library",
+  "description": "Component factory to help making crud",
+  "minimum-stability": "dev",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Vaclav Juchelka",
+      "email": "vjuchelka@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.3",
+    "nette/nette": "~2.2"
+  },
+  "autoload": {
+    "classmap": ["src"]
+  }
+}
