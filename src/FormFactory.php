@@ -86,11 +86,9 @@ class FormFactory {
 	public function buildDeleteForm($tableName, $id)
 	{
 		$form = new ProtectedForm();
-		$form->addHidden('id', $id);
 		$form->addSubmit('deleteRowSubmit', 'Delete');
 
-		$form->onSuccess[] = function($form) use ($tableName) {
-			$id = $form['id']->getValue();
+		$form->onSuccess[] = function($form) use ($tableName, $id) {
 			$this->model->delete($tableName, $id);
 		};
 		return $form;
