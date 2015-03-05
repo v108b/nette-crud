@@ -10,6 +10,7 @@ class Extension extends Object{
 
 	private $forms;
 	private $model;
+	private $components;
 
 	public function __construct(Context $database)
 	{
@@ -25,11 +26,11 @@ class Extension extends Object{
 	}
 
 	public function getComponents() {
-		if (! $this->model) {
-			$this->model = new ComponentFactory($this->getModel());
+		if (! $this->components) {
+			$this->components = new ComponentFactory($this->getModel());
 		}
 
-		return $this->model;
+		return $this->components;
 	}
 
 	public function getModel() {

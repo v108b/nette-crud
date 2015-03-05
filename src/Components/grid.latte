@@ -10,7 +10,7 @@
 					{foreach $columns as $column}
 						<th>{$column}</th>
 					{/foreach}
-					<th><a class="btn btn-success btn-xs" href="{plink insertTableRow $tableName}">Add</a></th>
+					<th><a class="btn btn-success btn-xs" href="{$crudView->link('insert!', $tableName)}">Add</a></th>
 				</tr>
 				</thead>
 				<tbody>
@@ -21,15 +21,15 @@
 								{if $row->$column === null}
 									<i>NULL</i>
 								{elseif array_key_exists($column, $foreignKeys)}
-									<a href="{plink updateTableRow $foreignKeys[$column], $row->$column}">{\V108B\NetteCrud\Extension::toString($row->ref($column))}</a>
+									<a href="{$crudView->link('update!', $foreignKeys[$column], $row->$column)}">{\V108B\NetteCrud\Extension::toString($row->ref($column))}</a>
 								{else}
 									{$row->$column}
 								{/if}
 							</td>
 						{/foreach}
 						<td>
-							<a class="btn btn-primary btn-xs" href="{plink updateTableRow $tableName, \V108B\NetteCrud\Extension::getIdString($row)}">Edit</a>
-							<a class="btn btn-danger btn-xs" href="{plink deleteTableRow $tableName, \V108B\NetteCrud\Extension::getIdString($row)}">Delete</a>
+							<a class="btn btn-primary btn-xs" href="{$crudView->link('update!', $tableName, \V108B\NetteCrud\Extension::getIdString($row))}">Edit</a>
+							<a class="btn btn-danger btn-xs" href="{$crudView->link('delete!', $tableName, \V108B\NetteCrud\Extension::getIdString($row))}">Delete</a>
 						</td>
 					</tr>
 				{/foreach}

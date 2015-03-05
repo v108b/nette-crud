@@ -1,0 +1,9 @@
+<div class="modal-body">
+	{if $action === 'insert'}
+		{control crudInsertForm}
+	{elseif $action === 'update'}
+		{control crudUpdateForm}
+	{elseif $action === 'delete'}
+		{control crudDeleteForm}
+	{/if}
+</div>
