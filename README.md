@@ -34,7 +34,13 @@ If you wish to display forms in modal windows, follow this process
 ### Add crud service extenstion to conlig.neon
 ```
 conlig.neon
-	crud: V108B\NetteCrud\Extension
+	crud:
+		class: V108B\NetteCrud\Extension
+		setup:
+			- setExcludedFields([
+				id
+				user: [password]
+			])
 ```
 
 ### Add to jquery main function (main.js)
