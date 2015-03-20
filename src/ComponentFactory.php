@@ -5,7 +5,7 @@ class ComponentFactory {
 
 	private $model;
 
-	public $excludedFields;
+	public $excludedFields = [];
 
 	public function __construct(Model $model)
 	{
