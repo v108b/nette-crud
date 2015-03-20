@@ -8,7 +8,6 @@ class Extension extends Object{
 
 	private $database;
 
-	private $forms;
 	private $model;
 	private $components;
 
@@ -17,12 +16,8 @@ class Extension extends Object{
 		$this->database = $database;
 	}
 
-	public function getForms() {
-		if (! $this->forms) {
-			$this->forms = new FormFactory($this->getModel());
-		}
-
-		return $this->forms;
+	public function setExcludedFields(array $excluded) {
+		$this->getComponents()->excludedFields = $excluded;
 	}
 
 	public function getComponents() {

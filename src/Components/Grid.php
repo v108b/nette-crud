@@ -6,41 +6,30 @@ use Nette\NotImplementedException;
 
 class Grid extends Control
 {
-	private $crud;
-
 	public $tableName;
 	public $rows;
-	public $structure;
 	public $model;
+	public $columns;
 
-	public function setCrudExtension($crud)
+	public function render(ModalView $crudView = null)
 	{
-		$this->crud = $crud;
-	}
-
-	public function render($crudView = null)
-	{
-		$this->template->setFile(__DIR__ . '/grid.latte');
-
-		$this->template->tableName = $this->tableName;
-		$this->template->rows = $this->rows;
-		$this->template->model = $this->model;
-
 		if ($crudView) {
 			$this->template->crudView = $crudView;
 		} else {
 			throw new NotImplementedException('CrudViewFake not implemented');
 		}
 
-		$structure = $this->structure;
-		$cols = [];
-		$columns = $structure->getColumns($this->tableName);
-		foreach ($columns as $column) {
-			$cols[] = $column['name'];
-		}
-		$this->template->columns = $cols;
+		$this->template->setFile(__DIR__ . '/grid.latte');
+		$this->template->tableName = $this->tableName;
+		$this->template->rows = $this->rows;
+		$this->template->model = $this->model;
 
-		$this->template->foreignKeys = $structure->getBelongsToReference($this->tableName);
+		$this->template->columns = [];
+		foreach ($this->columns as $column) {
+			$this->template->columns[] = $column['name'];
+		}
+
+		$this->template->foreignKeys = $this->model->getStructure()->getBelongsToReference($this->tableName);
 		$this->template->render();
 	}
 }

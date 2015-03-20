@@ -30,7 +30,7 @@ class ModalView extends \V108B\NetteModal\View {
 
 	public function createComponentCrudInsertForm()
 	{
-		$form = $this->getCrudExtension()->getForms()->buildInsertForm($this->tableName);
+		$form = $this->getCrudExtension()->getComponents()->buildInsertForm($this->tableName);
 		if ($this->defaults) {
 			$form->setDefaults(json_decode($this->defaults, true));
 		}
@@ -41,7 +41,7 @@ class ModalView extends \V108B\NetteModal\View {
 
 	public function createComponentCrudUpdateForm()
 	{
-		$form = $this->getCrudExtension()->getForms()->buildUpdateForm($this->tableName, json_decode($this->id, true));
+		$form = $this->getCrudExtension()->getComponents()->buildUpdateForm($this->tableName, json_decode($this->id, true));
 		if ($this->defaults) {
 			$form->setDefaults(json_decode($this->defaults, true));
 		}
@@ -52,7 +52,7 @@ class ModalView extends \V108B\NetteModal\View {
 
 	public function createComponentCrudDeleteForm()
 	{
-		$form = $this->getCrudExtension()->getForms()->buildDeleteForm($this->tableName, json_decode($this->id, true));
+		$form = $this->getCrudExtension()->getComponents()->buildDeleteForm($this->tableName, json_decode($this->id, true));
 
 		$form->onSuccess[] = function() {$this->getWindow()->close();};
 		return $form;
