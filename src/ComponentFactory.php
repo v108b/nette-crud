@@ -144,6 +144,8 @@ class ComponentFactory {
 					$select->setPrompt('NULL');
 				}
 
+			} elseif ($column['nativetype'] === 'TEXT') {
+				$form->addTextArea($name, $name);
 			} else {
 				$form->addText($name, $name);
 			}
